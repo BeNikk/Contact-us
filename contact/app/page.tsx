@@ -2,7 +2,7 @@
 
 import Image from "next/image"
 import { motion } from "framer-motion"
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group"
 import { Label } from "@/components/ui/label"
 import { Input } from "@/components/ui/input"
@@ -23,7 +23,12 @@ import { Rocket, MessageCircle, Youtube, Instagram, Twitter, Star, Heart } from 
 export default function Home() {
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [formStep, setFormStep] = useState(1);
+  const [randomNumber, setRandomNumber] = useState<number>(50);
+
   const { toast } = useToast();
+  useEffect(() => {
+    setRandomNumber(Math.random());
+  }, []);
 
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
@@ -75,7 +80,7 @@ export default function Home() {
             }}
             style={{
               left: `${(index * 20) + 10}%`,
-              top: `${(index*10)+5 * 100}%`
+              top: `${randomNumber * 100}%`
             }}
           >
             {item.icon}
