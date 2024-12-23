@@ -23,13 +23,7 @@ import { Rocket, MessageCircle, Youtube, Instagram, Twitter, Star, Heart } from 
 export default function Home() {
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [formStep, setFormStep] = useState(1);
-  const [randomNumber, setRandomNumber] = useState<number>(50);
-
   const { toast } = useToast();
-  useEffect(() => {
-    setRandomNumber(Math.random());
-  }, []);
-
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
@@ -69,7 +63,6 @@ export default function Home() {
             initial={{ opacity: 0, y: 100 }}
             animate={{ 
               opacity: [0.4, 1, 0.4], 
-              y: [0, -20, 0],
               x: Math.sin(index) * 20
             }}
             transition={{
@@ -80,7 +73,6 @@ export default function Home() {
             }}
             style={{
               left: `${(index * 20) + 10}%`,
-              top: `${randomNumber * 100}%`
             }}
           >
             {item.icon}
